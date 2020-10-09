@@ -2,13 +2,12 @@ package com.example.handwrittingrecognition
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import com.example.handwrittingrecognition.StrokeManager.res
+import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    public lateinit var textview: TextView
+    public lateinit var editText: EditText
 
 
 
@@ -21,11 +20,14 @@ class MainActivity : AppCompatActivity() {
         StrokeManager.download()
         recognize.setOnClickListener {
 
-            StrokeManager.recognize(this)
+            recognize.isClickable = false
 
-            res()
-            textview = findViewById(R.id.textView) as TextView
-            textview.setText(res())
+            StrokeManager.recognize(this){result ->
+                recognize.isClickable = true
+
+                editText = findViewById(R.id.editTextText) as EditText
+                editText.setText(result)
+            }
 
         }
 
@@ -33,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         clear.setOnClickListener {
             drawingView.clear()
             StrokeManager.clear()
-            textview.setText(StrokeManager.recogResult)
+            editText.setText(null)
         }
 
 

@@ -52,24 +52,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/recognize" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="339dp"
-        android:layout_height="109dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginLeft="39dp"
-        android:layout_marginTop="128dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginRight="39dp"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="casual"
-        android:text="The recognised text willl be shown here"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/result"
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="412dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="579dp"
+        android:layout_marginBottom="81dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="@+id/drawingView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/drawingView"
-        app:layout_constraintTop_toBottomOf="@+id/drawingView"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/drawingView"
         app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

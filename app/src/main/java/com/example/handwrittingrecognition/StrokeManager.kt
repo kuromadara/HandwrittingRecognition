@@ -3,7 +3,6 @@ package com.example.handwrittingrecognition
 import android.content.Context
 import android.util.Log
 import android.view.MotionEvent
-import android.widget.Toast
 import com.google.mlkit.common.MlKitException
 import com.google.mlkit.common.model.DownloadConditions
 import com.google.mlkit.common.model.RemoteModelManager
@@ -16,7 +15,6 @@ object StrokeManager {
     private var strokeBuilder = Ink.Stroke.builder()
     private lateinit var model: DigitalInkRecognitionModel
 
-    public var recogResult : String? = null
 
     fun addNewTouchEvent(event: MotionEvent) {
         val action = event.actionMasked
@@ -66,7 +64,7 @@ object StrokeManager {
             }
     }
 
-    fun recognize(context: Context) {
+    fun recognize(context: Context, callback: (String) -> Unit) {
         val recognizer: DigitalInkRecognizer =
             DigitalInkRecognition.getClient(
                 DigitalInkRecognizerOptions.builder(model).build()
@@ -77,23 +75,17 @@ object StrokeManager {
 
         recognizer.recognize(ink)
             .addOnSuccessListener { result: RecognitionResult ->
-                recogResult = result.candidates[0].text
+                callback(result.candidates[0].text)
             }
             .addOnFailureListener { e: Exception ->
                 Log.e("StrokeManager", "Error during recognition: $e")
             }
     }
 
-    fun res(): String? {
-        var resultToText = recogResult
-
-        return resultToText
-    }
 
 
     fun clear() {
         inkBuilder = Ink.builder()
-        recogResult = null
     }
 
 }
