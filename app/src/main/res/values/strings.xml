@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Handwritting Recognition</string>
+    <string name="recongize">Recongize</string>
+    <string name="clear">Clear</string>
+    <string name="selected_item">Selected item:</string>
+    <string-array name="Languages">
+        <item>English</item>
+        <item>Assamese</item>
+        <item>Hindi</item>
+    </string-array>
 </resources>
