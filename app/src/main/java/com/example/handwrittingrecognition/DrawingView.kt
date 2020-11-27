@@ -35,6 +35,7 @@ class DrawingView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         canvas.drawBitmap(canvasBitmap, 0f, 0f, canvasPaint)
         canvas.drawPath(currentStroke, currentStrokePaint)
+
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -62,9 +63,8 @@ class DrawingView @JvmOverloads constructor(
     }
 
     init {
-        currentStrokePaint.color = -0x1000000 // black
+        currentStrokePaint.color = -0x1000000
         currentStrokePaint.isAntiAlias = true
-        // Set stroke width based on display density.
         currentStrokePaint.strokeWidth = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
             STROKE_WIDTH_DP.toFloat(),

@@ -8,9 +8,7 @@ import com.google.mlkit.common.MlKitException
 import com.google.mlkit.common.model.DownloadConditions
 import com.google.mlkit.common.model.RemoteModelManager
 import com.google.mlkit.vision.digitalink.*
-import com.example.handwrittingrecognition.MainActivity
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.coroutines.coroutineContext
+
 
 
 object StrokeManager {
@@ -18,6 +16,7 @@ object StrokeManager {
     private var strokeBuilder = Ink.Stroke.builder()
     private lateinit var model: DigitalInkRecognitionModel
     public var lang : String = "en"
+
 
 
     fun addNewTouchEvent(event: MotionEvent) {
@@ -41,7 +40,6 @@ object StrokeManager {
 
             }
             else -> {
-                // Action not relevant for ink construction
             }
         }
     }
@@ -52,7 +50,7 @@ object StrokeManager {
             modelIdentifier =
                 DigitalInkRecognitionModelIdentifier.fromLanguageTag(lang)
         } catch (e: MlKitException) {
-            // language tag failed to parse, handle error.
+
         }
 
         model =

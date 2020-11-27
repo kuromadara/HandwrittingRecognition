@@ -1,5 +1,8 @@
 package com.example.handwrittingrecognition
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -36,7 +39,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    // write code to perform some action
                 }
             }
         }
@@ -57,6 +59,19 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        fun copyTextToClipboard() {
+            val textToCopy = editText.text
+            val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clipData = ClipData.newPlainText("text", textToCopy)
+            clipboardManager.setPrimaryClip(clipData)
+            Toast.makeText(this, "Text copied to clipboard", Toast.LENGTH_LONG).show()
+        }
+
+        imageButton.setOnClickListener {
+            copyTextToClipboard()
+        }
+
+
 
         clear.setOnClickListener {
 
@@ -66,6 +81,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext,"Canvas Cleared",Toast.LENGTH_SHORT).show()
 
         }
+
 
 
     }
